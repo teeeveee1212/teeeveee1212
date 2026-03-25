@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reseller Program - TeeeVeee.nl | Start Your IPTV Business</title>
+    <meta name="description" content="Become a TeeeVeee reseller and start your own IPTV business. Get wholesale pricing, reseller panel access, and 24/7 support.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Reseller Page Specific Styles */
+        .credit-packages {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .credit-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: 40px 32px;
+            text-align: center;
+            border: 2px solid var(--border-light);
+            transition: var(--transition);
+            position: relative;
+        }
+        .credit-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+        }
+        .credit-card.featured {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, var(--white) 0%, #fff8f3 100%);
+            transform: scale(1.05);
+        }
+        .credit-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        .credit-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-grad);
+            color: white;
+            padding: 8px 20px;
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .credit-amount {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        .credit-label {
+            font-size: 16px;
+            color: var(--gray);
+            margin-bottom: 24px;
+        }
+        .credit-price {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+        .credit-price span {
+            font-size: 18px;
+            color: var(--gray);
+            font-weight: 500;
+        }
+        .credit-per {
+            font-size: 14px;
+            color: var(--gray);
+            margin-bottom: 24px;
+        }
+        .credit-features {
+            text-align: left;
+            margin-bottom: 28px;
+        }
+        .credit-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            font-size: 14px;
+            color: var(--dark);
+            border-bottom: 1px solid var(--border-light);
+        }
+        .credit-features li:last-child {
+            border-bottom: none;
+        }
+        .credit-features li i {
+            color: var(--primary);
+            font-size: 14px;
+        }
+
+        /* Benefits Grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .benefit-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 32px 24px;
+            text-align: center;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(255, 107, 0, 0.3);
+        }
+        .benefit-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--primary-grad);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            margin: 0 auto 20px;
+            box-shadow: 0 8px 20px rgba(255, 107, 0, 0.3);
+        }
+        .benefit-card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        .benefit-card p {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            position: relative;
+        }
+        .how-it-works::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 12%;
+            right: 12%;
+            height: 4px;
+            background: var(--primary-grad);
+            border-radius: 2px;
+        }
+        .how-step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .how-num {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0 auto 20px;
+            box-shadow: var(--shadow-md);
+        }
+        .how-step h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+        .how-step p {
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        /* Stats Row */
+        .reseller-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 50px;
+        }
+        .reseller-stat {
+            text-align: center;
+            padding: 24px;
+            background: rgba(255,255,255,0.05);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .reseller-stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        .reseller-stat-label {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Calculator Section */
+        .calculator-box {
+            background: var(--light);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .calculator-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .calculator-row:last-child {
+            border-bottom: none;
+            padding-top: 24px;
+        }
+        .calculator-row.total {
+            background: var(--primary);
+            margin: 20px -40px -40px;
+            padding: 24px 40px;
+            border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+            color: white;
+        }
+        .calculator-row.total span:last-child {
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        @media (max-width: 1024px) {
+            .credit-packages {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+            .credit-card.featured {
+                transform: none;
+            }
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .how-it-works {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .how-it-works::before {
+                display: none;
+            }
+            .reseller-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            .how-it-works {
+                grid-template-columns: 1fr;
+            }
+            .reseller-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-inner">
+                <div class="top-bar-left">
+                    <a href="mailto:support@teeeveee.nl"><i class="fas fa-envelope"></i> support@teeeveee.nl</a>
+                    <a href="#"><i class="fab fa-whatsapp"></i> WhatsApp Support</a>
+                </div>
+                <div class="top-bar-right">
+                    <span class="status-dot"></span>
+                    <span class="status-text">All Systems Online</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="logo">
+                    <span class="logo-text">Teee<span class="highlight">Veee</span>.nl</span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#pricing">Pricing</a></li>
+                    <li><a href="channels.html">Channel List</a></li>
+                    <li><a href="setup.html">Installation Guide</a></li>
+                    <li><a href="reseller.html" style="color: var(--primary);">Reseller Program</a></li>
+                    <li><a href="index.html#faq">FAQ</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="https://shop.iduck.xyz" target="_blank" class="btn btn-outline">Client Login</a>
+                    <a href="index.html#pricing" class="btn btn-primary">Get Started</a>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-overlay"></div>
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <span class="logo-text">Teee<span class="highlight">Veee</span>.nl</span>
+            <button class="mobile-menu-close"><i class="fas fa-times"></i></button>
+        </div>
+        <ul class="mobile-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#pricing">Pricing</a></li>
+            <li><a href="channels.html">Channel List</a></li>
+            <li><a href="setup.html">Installation Guide</a></li>
+            <li><a href="reseller.html">Reseller Program</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: auto; padding: 120px 0 100px;">
+        <div class="hero-grid"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-handshake"></i>
+                    <span>Reseller Program</span>
+                </div>
+                <h1 class="hero-title" style="font-size: clamp(36px, 5vw, 60px);">
+                    Start Your <span class="gradient-text">IPTV Business</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Become a TeeeVeee reseller and earn money by selling IPTV subscriptions. Get wholesale pricing, your own reseller panel, and dedicated support.
+                </p>
+                <div class="hero-cta">
+                    <a href="https://shop.iduck.xyz/store/boomcash/credits" target="_blank" class="btn btn-primary btn-lg">
+                        <i class="fas fa-shopping-cart"></i> Buy Credits Now
+                    </a>
+                    <a href="#packages" class="btn btn-outline btn-lg">
+                        <i class="fas fa-info-circle"></i> Learn More
+                    </a>
+                </div>
+                <div class="reseller-stats">
+                    <div class="reseller-stat">
+                        <div class="reseller-stat-number">$2</div>
+                        <div class="reseller-stat-label">Per Credit (First-Time)</div>
+                    </div>
+                    <div class="reseller-stat">
+                        <div class="reseller-stat-number">80%+</div>
+                        <div class="reseller-stat-label">Profit Margins</div>
+                    </div>
+                    <div class="reseller-stat">
+                        <div class="reseller-stat-number">$100</div>
+                        <div class="reseller-stat-label">Minimum Buy</div>
+                    </div>
+                    <div class="reseller-stat">
+                        <div class="reseller-stat-number">No Max</div>
+                        <div class="reseller-stat-label">Unlimited Credits</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="status-section" style="margin-top: 0; border-radius: 0;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label"><i class="fas fa-star"></i> Why Resell</div>
+                <h2 class="section-title">Reseller Benefits</h2>
+                <p class="section-subtitle">Everything you need to run a successful IPTV business</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-percentage"></i></div>
+                    <h3>Massive Profit Margins</h3>
+                    <p>Buy at $2, sell at $12+ - that's over 80% profit on every subscription!</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-sliders-h"></i></div>
+                    <h3>Your Own Panel</h3>
+                    <p>Full control panel to create, manage, and extend customer subscriptions.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-headset"></i></div>
+                    <h3>Dedicated Support</h3>
+                    <p>Priority support for all resellers via WhatsApp and Telegram.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>Fast Activation</h3>
+                    <p>Create customer accounts quickly. Panel setup included with your first purchase.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-globe"></i></div>
+                    <h3>White Label</h3>
+                    <p>Brand the service as your own. Your customers never see our name.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Business Dashboard</h3>
+                    <p>Track sales, revenue, and customer analytics in real-time.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-infinity"></i></div>
+                    <h3>No Limits</h3>
+                    <p>No minimum purchases. No maximum customers. Scale at your pace.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-server"></i></div>
+                    <h3>Reliable Service</h3>
+                    <p>99.9% uptime with anti-freeze technology and redundant servers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credit Packages -->
+    <section id="packages" class="content-section" style="padding: 100px 0; background: var(--light);">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label"><i class="fas fa-coins"></i> Credit Packages</div>
+                <h2 class="section-title">Reseller Credit Packages</h2>
+                <p class="section-subtitle">Buy credits to create customer subscriptions. Visit our shop to see all available packages.</p>
+            </div>
+
+            <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+                <div style="background: white; border-radius: 20px; padding: 50px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); border: 2px solid var(--primary);">
+                    <div style="font-size: 60px; margin-bottom: 20px;"><i class="fas fa-coins" style="color: var(--primary);"></i></div>
+                    <h3 style="font-size: 28px; margin-bottom: 15px; color: var(--dark);">First-Time Reseller Special</h3>
+                    <p style="font-size: 18px; color: var(--gray); margin-bottom: 30px; line-height: 1.7;">
+                        Get started with our exclusive first-time reseller rate. No maximum purchase limit - buy as many credits as you need!
+                    </p>
+
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 40px;">
+                        <div style="background: var(--light); padding: 25px 15px; border-radius: 12px;">
+                            <div style="font-size: 14px; color: var(--gray); margin-bottom: 5px;">First-Time Price</div>
+                            <div style="font-size: 36px; font-weight: 800; color: var(--primary);">$2</div>
+                            <div style="font-size: 13px; color: var(--gray);">per credit</div>
+                        </div>
+                        <div style="background: var(--light); padding: 25px 15px; border-radius: 12px;">
+                            <div style="font-size: 14px; color: var(--gray); margin-bottom: 5px;">Minimum</div>
+                            <div style="font-size: 36px; font-weight: 800; color: var(--primary);">$100</div>
+                            <div style="font-size: 13px; color: var(--gray);">50 credits</div>
+                        </div>
+                        <div style="background: var(--light); padding: 25px 15px; border-radius: 12px;">
+                            <div style="font-size: 14px; color: var(--gray); margin-bottom: 5px;">Profit</div>
+                            <div style="font-size: 36px; font-weight: 800; color: var(--primary);">80%+</div>
+                            <div style="font-size: 13px; color: var(--gray);">per sale</div>
+                        </div>
+                        <div style="background: var(--light); padding: 25px 15px; border-radius: 12px;">
+                            <div style="font-size: 14px; color: var(--gray); margin-bottom: 5px;">Maximum</div>
+                            <div style="font-size: 36px; font-weight: 800; color: var(--primary);">None</div>
+                            <div style="font-size: 13px; color: var(--gray);">unlimited</div>
+                        </div>
+                    </div>
+
+                    <a href="https://shop.iduck.xyz/store/boomcash/credits" target="_blank" class="btn btn-primary btn-lg" style="padding: 18px 50px; font-size: 18px;">
+                        <i class="fas fa-shopping-cart"></i> Buy Credits Now
+                    </a>
+
+                    <p style="margin-top: 20px; font-size: 14px; color: var(--gray);">
+                        <i class="fas fa-lock" style="margin-right: 5px;"></i> Secure checkout &bull; Fast delivery
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="steps-section" style="padding: 100px 0;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label"><i class="fas fa-play-circle"></i> How It Works</div>
+                <h2 class="section-title">Start Reselling in 4 Steps</h2>
+                <p class="section-subtitle">Get your reseller panel and start selling today</p>
+            </div>
+            <div class="how-it-works">
+                <div class="how-step">
+                    <div class="how-num">1</div>
+                    <h4>Buy Credits</h4>
+                    <p>Choose a credit package and complete your purchase</p>
+                </div>
+                <div class="how-step">
+                    <div class="how-num">2</div>
+                    <h4>Get Panel Access</h4>
+                    <p>Receive your reseller panel login credentials</p>
+                </div>
+                <div class="how-step">
+                    <div class="how-num">3</div>
+                    <h4>Create Accounts</h4>
+                    <p>Use credits to create customer subscriptions</p>
+                </div>
+                <div class="how-step">
+                    <div class="how-num">4</div>
+                    <h4>Earn Profit</h4>
+                    <p>Sell subscriptions at your price and keep the profit</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profit Calculator -->
+    <section class="content-section" style="padding: 100px 0;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label"><i class="fas fa-calculator"></i> Earnings</div>
+                <h2 class="section-title">Profit Calculator</h2>
+                <p class="section-subtitle">See how much you can earn as a TeeeVeee reseller</p>
+            </div>
+            <div class="calculator-box">
+                <h3 style="margin-bottom: 24px; color: var(--dark);"><i class="fas fa-chart-line" style="color: var(--primary); margin-right: 10px;"></i> Example: 50 Credit Package @ $2/credit</h3>
+                <div class="calculator-row">
+                    <span>Your Cost (50 credits @ $2)</span>
+                    <span style="font-weight: 600;">$100</span>
+                </div>
+                <div class="calculator-row">
+                    <span>You Sell 50 Subs @ $12 each</span>
+                    <span style="font-weight: 600;">$600</span>
+                </div>
+                <div class="calculator-row">
+                    <span>Your Profit per Sale</span>
+                    <span style="font-weight: 600; color: var(--primary);">$10</span>
+                </div>
+                <div class="calculator-row total">
+                    <span style="font-size: 18px;">Total Profit</span>
+                    <span>$500</span>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 30px; color: var(--gray);">
+                * First-time reseller rate. Your actual profit depends on your selling price.
+            </p>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="reseller-section">
+        <div class="container">
+            <div class="reseller-content">
+                <div class="section-header">
+                    <h2 class="section-title">Ready to Start?</h2>
+                    <p class="section-subtitle">Contact us to get your reseller panel and start earning today</p>
+                </div>
+                <div class="reseller-grid">
+                    <div class="reseller-card">
+                        <i class="fab fa-whatsapp"></i>
+                        <h3>WhatsApp</h3>
+                        <p>Fast response for all reseller inquiries</p>
+                    </div>
+                    <div class="reseller-card">
+                        <i class="fab fa-telegram"></i>
+                        <h3>Telegram</h3>
+                        <p>Join our reseller support group</p>
+                    </div>
+                    <div class="reseller-card">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email</h3>
+                        <p>reseller@teeeveee.nl</p>
+                    </div>
+                </div>
+                <a href="https://shop.iduck.xyz/store/boomcash/credits" target="_blank" class="btn btn-white btn-lg">
+                    <i class="fas fa-shopping-cart"></i> Buy Credits Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <span class="logo-text" style="font-size: 24px;">Teee<span class="highlight">Veee</span>.nl</span>
+                    <p style="margin-top: 20px;">Premium IPTV streaming with 7,000+ live channels and 40,000+ movies & series.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#pricing">Pricing</a></li>
+                        <li><a href="channels.html">Channel List</a></li>
+                        <li><a href="index.html#features">Features</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="index.html#faq">FAQ</a></li>
+                        <li><a href="setup.html">Installation Guide</a></li>
+                        <li><a href="reseller.html">Reseller Program</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fab fa-whatsapp" style="color: var(--primary); margin-right: 8px;"></i> WhatsApp</li>
+                        <li><i class="fas fa-envelope" style="color: var(--primary); margin-right: 8px;"></i> support@teeeveee.nl</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TeeeVeee.nl - All rights reserved</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Widget -->
+    <div class="whatsapp-widget">
+        <a href="#" class="whatsapp-btn">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Channel List - TeeeVeee.nl | 7,000+ Live Channels</title>
+    <meta name="description" content="Browse our complete channel list with 7,000+ live channels from around the world. Sports, Movies, Entertainment, News, and more.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .channel-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .category-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(255, 107, 0, 0.15);
+            border-color: var(--primary);
+        }
+        .category-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            flex-shrink: 0;
+        }
+        .category-info h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--dark);
+        }
+        .category-info p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        .category-count {
+            margin-left: auto;
+            background: var(--light);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 16px 24px 16px 56px;
+            border-radius: 50px;
+            border: 2px solid rgba(0,0,0,0.1);
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 4px 20px rgba(255, 107, 0, 0.15);
+        }
+        .search-box i {
+            position: absolute;
+            left: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+        .category-sports { background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); }
+        .category-movies { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); }
+        .category-news { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }
+        .category-kids { background: linear-gradient(135deg, #f472b6 0%, #ec4899 100%); }
+        .category-music { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); }
+        .category-adult { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
+        .category-international { background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-inner">
+                <div class="top-bar-left">
+                    <a href="mailto:support@teeeveee.nl"><i class="fas fa-envelope"></i> support@teeeveee.nl</a>
+                    <a href="#"><i class="fab fa-whatsapp"></i> WhatsApp Support</a>
+                </div>
+                <div class="top-bar-right">
+                    <span class="status-dot"></span>
+                    <span class="status-text">All Systems Online</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="logo">
+                    <span class="logo-text">Teee<span class="highlight">Veee</span>.nl</span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#pricing">Pricing</a></li>
+                    <li><a href="channels.html" style="color: var(--primary);">Channel List</a></li>
+                    <li><a href="setup.html">Installation Guide</a></li>
+                    <li><a href="index.html#reseller">Reseller Program</a></li>
+                    <li><a href="index.html#faq">FAQ</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="https://shop.iduck.xyz" target="_blank" class="btn btn-outline">Client Login</a>
+                    <a href="index.html#pricing" class="btn btn-primary">Get Started</a>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-overlay"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <span class="logo-text">Teee<span class="highlight">Veee</span>.nl</span>
+            <button class="mobile-menu-close"><i class="fas fa-times"></i></button>
+        </div>
+        <ul class="mobile-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#pricing">Pricing</a></li>
+            <li><a href="channels.html">Channel List</a></li>
+            <li><a href="setup.html">Installation Guide</a></li>
+            <li><a href="index.html#reseller">Reseller Program</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: auto; padding: 120px 0 80px;">
+        <div class="hero-grid"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-tv"></i>
+                    <span>Channel List</span>
+                </div>
+                <h1 class="hero-title" style="font-size: clamp(32px, 5vw, 56px);">
+                    <span class="gradient-text">7,000+</span> Live Channels
+                </h1>
+                <p class="hero-subtitle">
+                    Browse our extensive channel library with content from around the world. Sports, Movies, Entertainment, News, Kids, and much more.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats & Search -->
+    <section class="status-section" style="margin-top: 0; border-radius: 0;">
+        <div class="container">
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-number">7,000+</div>
+                    <div class="stat-label">Live Channels</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">40,000+</div>
+                    <div class="stat-label">Movies & Series</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Categories</div>
+                </div>
+            </div>
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="channelSearch" placeholder="Search channels or categories...">
+            </div>
+        </div>
+    </section>
+
+    <!-- Channel Categories -->
+    <section class="content-section" style="padding: 60px 0 100px;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label"><i class="fas fa-globe"></i> Browse by Category</div>
+                <h2 class="section-title">Channel Categories</h2>
+                <p class="section-subtitle">Click on a category to see available channels</p>
+            </div>
+
+            <div class="channel-categories" id="categoryGrid">
+                <!-- Sports -->
+                <div class="category-card" data-category="sports">
+                    <div class="category-icon category-sports"><i class="fas fa-futbol"></i></div>
+                    <div class="category-info">
+                        <h3>Sports</h3>
+                        <p>Live sports from around the world</p>
+                    </div>
+                    <span class="category-count">500+</span>
+                </div>
+
+                <div class="category-card" data-category="ppv">
+                    <div class="category-icon category-sports"><i class="fas fa-ticket-alt"></i></div>
+                    <div class="category-info">
+                        <h3>PPV Events</h3>
+                        <p>Pay-per-view & special events</p>
+                    </div>
+                    <span class="category-count">50+</span>
+                </div>
+
+                <div class="category-card" data-category="nfl">
+                    <div class="category-icon category-sports"><i class="fas fa-football-ball"></i></div>
+                    <div class="category-info">
+                        <h3>NFL</h3>
+                        <p>American Football</p>
+                    </div>
+                    <span class="category-count">80+</span>
+                </div>
+
+                <div class="category-card" data-category="nba">
+                    <div class="category-icon category-sports"><i class="fas fa-basketball-ball"></i></div>
+                    <div class="category-info">
+                        <h3>NBA</h3>
+                        <p>Basketball</p>
+                    </div>
+                    <span class="category-count">60+</span>
+                </div>
+
+                <div class="category-card" data-category="nhl">
+                    <div class="category-icon category-sports"><i class="fas fa-hockey-puck"></i></div>
+                    <div class="category-info">
+                        <h3>NHL</h3>
+                        <p>Ice Hockey</p>
+                    </div>
+                    <span class="category-count">40+</span>
+                </div>
+
+                <div class="category-card" data-category="mlb">
+                    <div class="category-icon category-sports"><i class="fas fa-baseball-ball"></i></div>
+                    <div class="category-info">
+                        <h3>MLB</h3>
+                        <p>Baseball</p>
+                    </div>
+                    <span class="category-count">50+</span>
+                </div>
+
+                <div class="category-card" data-category="mma">
+                    <div class="category-icon category-sports"><i class="fas fa-fist-raised"></i></div>
+                    <div class="category-info">
+                        <h3>MMA / UFC</h3>
+                        <p>Fighting & Combat Sports</p>
+                    </div>
+                    <span class="category-count">30+</span>
+                </div>
+
+                <div class="category-card" data-category="wwe">
+                    <div class="category-icon category-sports"><i class="fas fa-mask"></i></div>
+                    <div class="category-info">
+                        <h3>WWE</h3>
+                        <p>Wrestling Entertainment</p>
+                    </div>
+                    <span class="category-count">20+</span>
+                </div>
+
+                <div class="category-card" data-category="racing">
+                    <div class="category-icon category-sports"><i class="fas fa-flag-checkered"></i></div>
+                    <div class="category-info">
+                        <h3>Racing / F1</h3>
+                        <p>Motorsports & Formula 1</p>
+                    </div>
+                    <span class="category-count">25+</span>
+                </div>
+
+                <div class="category-card" data-category="soccer">
+                    <div class="category-icon category-sports"><i class="fas fa-futbol"></i></div>
+                    <div class="category-info">
+                        <h3>Football Europe</h3>
+                        <p>European Soccer Leagues</p>
+                    </div>
+                    <span class="category-count">180+</span>
+                </div>
+
+                <div class="category-card" data-category="bein">
+                    <div class="category-icon category-sports"><i class="fas fa-broadcast-tower"></i></div>
+                    <div class="category-info">
+                        <h3>beIN Sports</h3>
+                        <p>International Sports Network</p>
+                    </div>
+                    <span class="category-count">35+</span>
+                </div>
+
+                <div class="category-card" data-category="dazn">
+                    <div class="category-icon category-sports"><i class="fas fa-play-circle"></i></div>
+                    <div class="category-info">
+                        <h3>DAZN</h3>
+                        <p>Sports Streaming Events</p>
+                    </div>
+                    <span class="category-count">130+</span>
+                </div>
+
+                <!-- Entertainment -->
+                <div class="category-card" data-category="usa">
+                    <div class="category-icon"><i class="fas fa-flag-usa"></i></div>
+                    <div class="category-info">
+                        <h3>USA</h3>
+                        <p>American Channels</p>
+                    </div>
+                    <span class="category-count">800+</span>
+                </div>
+
+                <div class="category-card" data-category="uk">
+                    <div class="category-icon"><i class="fas fa-crown"></i></div>
+                    <div class="category-info">
+                        <h3>UK</h3>
+                        <p>British Channels</p>
+                    </div>
+                    <span class="category-count">400+</span>
+                </div>
+
+                <div class="category-card" data-category="canada">
+                    <div class="category-icon"><i class="fas fa-leaf"></i></div>
+                    <div class="category-info">
+                        <h3>Canada</h3>
+                        <p>Canadian Channels</p>
+                    </div>
+                    <span class="category-count">110+</span>
+                </div>
+
+                <div class="category-card" data-category="europe-west">
+                    <div class="category-icon category-international"><i class="fas fa-globe-europe"></i></div>
+                    <div class="category-info">
+                        <h3>Europe - Western</h3>
+                        <p>UK, Germany, France, etc.</p>
+                    </div>
+                    <span class="category-count">1,200+</span>
+                </div>
+
+                <div class="category-card" data-category="europe-south">
+                    <div class="category-icon category-international"><i class="fas fa-sun"></i></div>
+                    <div class="category-info">
+                        <h3>Europe - Southern</h3>
+                        <p>Spain, Italy, Portugal, etc.</p>
+                    </div>
+                    <span class="category-count">700+</span>
+                </div>
+
+                <div class="category-card" data-category="europe-nordic">
+                    <div class="category-icon category-international"><i class="fas fa-snowflake"></i></div>
+                    <div class="category-info">
+                        <h3>Europe - Nordic</h3>
+                        <p>Sweden, Norway, Denmark</p>
+                    </div>
+                    <span class="category-count">50+</span>
+                </div>
+
+                <div class="category-card" data-category="latino">
+                    <div class="category-icon category-international"><i class="fas fa-globe-americas"></i></div>
+                    <div class="category-info">
+                        <h3>Latino</h3>
+                        <p>Spanish & Latin American</p>
+                    </div>
+                    <span class="category-count">350+</span>
+                </div>
+
+                <div class="category-card" data-category="caribbean">
+                    <div class="category-icon category-international"><i class="fas fa-umbrella-beach"></i></div>
+                    <div class="category-info">
+                        <h3>Caribbean & Central America</h3>
+                        <p>Caribbean region channels</p>
+                    </div>
+                    <span class="category-count">140+</span>
+                </div>
+
+                <div class="category-card" data-category="south-america">
+                    <div class="category-icon category-international"><i class="fas fa-globe"></i></div>
+                    <div class="category-info">
+                        <h3>South America</h3>
+                        <p>Brazil, Argentina, etc.</p>
+                    </div>
+                    <span class="category-count">320+</span>
+                </div>
+
+                <div class="category-card" data-category="india">
+                    <div class="category-icon category-international"><i class="fas fa-om"></i></div>
+                    <div class="category-info">
+                        <h3>India</h3>
+                        <p>Indian Channels</p>
+                    </div>
+                    <span class="category-count">200+</span>
+                </div>
+
+                <div class="category-card" data-category="pakistan">
+                    <div class="category-icon category-international"><i class="fas fa-star-and-crescent"></i></div>
+                    <div class="category-info">
+                        <h3>Pakistan</h3>
+                        <p>Pakistani Channels</p>
+                    </div>
+                    <span class="category-count">80+</span>
+                </div>
+
+                <div class="category-card" data-category="turkey">
+                    <div class="category-icon category-international"><i class="fas fa-mosque"></i></div>
+                    <div class="category-info">
+                        <h3>Turkey</h3>
+                        <p>Turkish Channels</p>
+                    </div>
+                    <span class="category-count">150+</span>
+                </div>
+
+                <div class="category-card" data-category="africa">
+                    <div class="category-icon category-international"><i class="fas fa-globe-africa"></i></div>
+                    <div class="category-info">
+                        <h3>Africa</h3>
+                        <p>African Channels</p>
+                    </div>
+                    <span class="category-count">60+</span>
+                </div>
+
+                <!-- Movies & Entertainment -->
+                <div class="category-card" data-category="movies">
+                    <div class="category-icon category-movies"><i class="fas fa-film"></i></div>
+                    <div class="category-info">
+                        <h3>Movies 24/7</h3>
+                        <p>Non-stop movie channels</p>
+                    </div>
+                    <span class="category-count">300+</span>
+                </div>
+
+                <div class="category-card" data-category="plex">
+                    <div class="category-icon category-movies"><i class="fas fa-play"></i></div>
+                    <div class="category-info">
+                        <h3>Plex Channels</h3>
+                        <p>Plex streaming content</p>
+                    </div>
+                    <span class="category-count">100+</span>
+                </div>
+
+                <div class="category-card" data-category="cinebox">
+                    <div class="category-icon category-movies"><i class="fas fa-video"></i></div>
+                    <div class="category-info">
+                        <h3>Cinebox</h3>
+                        <p>Premium movie channels</p>
+                    </div>
+                    <span class="category-count">20+</span>
+                </div>
+
+                <div class="category-card" data-category="docubox">
+                    <div class="category-icon category-news"><i class="fas fa-book-open"></i></div>
+                    <div class="category-info">
+                        <h3>Docubox</h3>
+                        <p>Documentaries</p>
+                    </div>
+                    <span class="category-count">20+</span>
+                </div>
+
+                <div class="category-card" data-category="music">
+                    <div class="category-icon category-music"><i class="fas fa-music"></i></div>
+                    <div class="category-info">
+                        <h3>Music</h3>
+                        <p>Music channels & concerts</p>
+                    </div>
+                    <span class="category-count">50+</span>
+                </div>
+
+                <div class="category-card" data-category="247">
+                    <div class="category-icon category-movies"><i class="fas fa-clock"></i></div>
+                    <div class="category-info">
+                        <h3>24/7 Channels</h3>
+                        <p>Non-stop entertainment</p>
+                    </div>
+                    <span class="category-count">290+</span>
+                </div>
+
+                <!-- VOD -->
+                <div class="category-card" data-category="vod-movies">
+                    <div class="category-icon category-movies"><i class="fas fa-clapperboard"></i></div>
+                    <div class="category-info">
+                        <h3>VOD Movies</h3>
+                        <p>On-demand movies library</p>
+                    </div>
+                    <span class="category-count">25,000+</span>
+                </div>
+
+                <div class="category-card" data-category="vod-series">
+                    <div class="category-icon category-movies"><i class="fas fa-tv"></i></div>
+                    <div class="category-info">
+                        <h3>VOD Series</h3>
+                        <p>TV shows & series</p>
+                    </div>
+                    <span class="category-count">15,000+</span>
+                </div>
+
+                <!-- Adult -->
+                <div class="category-card" data-category="adult">
+                    <div class="category-icon category-adult"><i class="fas fa-user-lock"></i></div>
+                    <div class="category-info">
+                        <h3>Adult (18+)</h3>
+                        <p>Adult content - PIN protected</p>
+                    </div>
+                    <span class="category-count">650+</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="reseller-section">
+        <div class="container">
+            <div class="reseller-content">
+                <div class="section-header">
+                    <h2 class="section-title">Ready to Start Watching?</h2>
+                    <p class="section-subtitle">Get instant access to all 7,000+ channels and 40,000+ movies</p>
+                </div>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+                    <a href="index.html#pricing" class="btn btn-white btn-lg">
+                        <i class="fas fa-shopping-cart"></i> View Pricing
+                    </a>
+                    <a href="setup.html" class="btn btn-outline" style="border-color: white; color: white;">
+                        <i class="fas fa-cog"></i> Installation Guide
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <span class="logo-text" style="font-size: 24px;">Teee<span class="highlight">Veee</span>.nl</span>
+                    <p style="margin-top: 20px;">Premium IPTV streaming with 7,000+ live channels and 40,000+ movies & series.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#pricing">Pricing</a></li>
+                        <li><a href="channels.html">Channel List</a></li>
+                        <li><a href="index.html#features">Features</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="index.html#faq">FAQ</a></li>
+                        <li><a href="setup.html">Installation Guide</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fab fa-whatsapp" style="color: var(--primary); margin-right: 8px;"></i> WhatsApp</li>
+                        <li><i class="fas fa-envelope" style="color: var(--primary); margin-right: 8px;"></i> support@teeeveee.nl</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TeeeVeee.nl - All rights reserved</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Widget -->
+    <div class="whatsapp-widget">
+        <a href="#" class="whatsapp-btn">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Category search functionality
+        const searchInput = document.getElementById('channelSearch');
+        const categoryCards = document.querySelectorAll('.category-card');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+
+            categoryCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const desc = card.querySelector('p').textContent.toLowerCase();
+
+                if (title.includes(searchTerm) || desc.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

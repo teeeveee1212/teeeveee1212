@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation Guide - TeeeVeee.nl | Setup in Minutes</title>
+    <meta name="description" content="Set up TeeeVeee IPTV on any device in minutes. Step-by-step guides for Fire Stick, Android, iOS, Smart TV, Windows, and MAG Box.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Setup Page Specific Styles */
+        .setup-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 50px;
+        }
+        .setup-stat {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .setup-stat-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        .setup-stat-label {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Device Tabs */
+        .device-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .device-tab {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 28px;
+            background: var(--white);
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--gray);
+        }
+        .device-tab i {
+            font-size: 22px;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+        .device-tab:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        .device-tab:hover i {
+            color: var(--primary);
+        }
+        .device-tab.active {
+            background: var(--primary-grad);
+            border-color: var(--primary);
+            color: var(--white);
+            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.35);
+        }
+        .device-tab.active i {
+            color: var(--white);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Setup Container */
+        .setup-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Setup Header Card */
+        .setup-header-card {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-blue) 100%);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            margin-bottom: 30px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        .setup-header-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-grad);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            flex-shrink: 0;
+            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.4);
+        }
+        .setup-header-content h2 {
+            font-size: 26px;
+            margin-bottom: 8px;
+        }
+        .setup-header-content p {
+            opacity: 0.7;
+            font-size: 15px;
+        }
+        .setup-time {
+            margin-left: auto;
+            text-align: right;
+        }
+        .setup-time-value {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .setup-time-label {
+            font-size: 13px;
+            opacity: 0.6;
+        }
+
+        /* Step Cards */
+        .step-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .step-item {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+        .step-item:hover {
+            border-color: rgba(255, 107, 0, 0.3);
+            box-shadow: var(--shadow-md);
+            transform: translateX(5px);
+        }
+        .step-num {
+            width: 48px;
+            height: 48px;
+            background: var(--primary-grad);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 800;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+        }
+        .step-content h4 {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+        .step-content p {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+        .step-content code {
+            background: var(--light);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 13px;
+            color: var(--primary);
+        }
+
+        /* Pro Tip Box */
+        .pro-tip {
+            background: linear-gradient(135deg, rgba(255, 107, 0, 0.1) 0%, rgba(255, 165, 0, 0.05) 100%);
+            border-left: 4px solid var(--primary);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            padding: 20px 24px;
+            margin-top: 24px;
+        }
+        .pro-tip h5 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary);
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+        .pro-tip p {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Recommended Apps */
+        .app-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+        .app-badge {
+            background: var(--light);
+            padding: 10px 18px;
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+        .app-badge:hover {
+            background: var(--primary);
+            color: white;
+        }
+        .app-badge i {
+            color: var(--primary);
+        }
+        .app-badge:hover i {
+            color: white;
+        }
+
+        /* Credentials Box */
+        .credentials-box {
+            background: var(--light);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            margin: 60px auto;
+            max-width: 700px;
+        }
+        .credentials-box h3 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 20px;
+            margin-bottom: 24px;
+        }
+        .credentials-box h3 i {
+            color: var(--primary);
+        }
+        .credential-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            background: white;
+            border-radius: var(--radius-md);
+            margin-bottom: 12px;
+            border: 1px solid var(--border-light);
+        }
+        .credential-row:last-child {
+            margin-bottom: 0;
+        }
+        .credential-label {
+            font-size: 14px;
+            color: var(--gray);
+        }
+        .credential-value {
+            font-family: monospace;
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Process Steps */
+        .process-section {
+            background: var(--light);
+            padding: 80px 0;
+        }
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            position: relative;
+        }
+        .process-grid::before {
+            content: '';
+            position: absolute;
+            top: 35px;
+            left: 10%;
+            right: 10%;
+            height: 4px;
+            background: var(--primary-grad);
+            border-radius: 2px;
+            z-index: 0;
+        }
+        .process-step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .process-num {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0 auto 20px;
+            box-shadow: var(--shadow-md);
+        }
+        .process-step h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+        .process-step p {
+            font-size: 12px;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 1024px) {
+            .setup-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .process-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .process-grid::before {
+                display: none;
+            }
+        }
+        @media (max-width: 768px) {
+            .device-tabs {
+                flex-direction: column;
+            }
+            .device-tab {
+                width: 100%;
+                justify-content: center;
+            }
+            .setup-header-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .setup-time {
+                margin-left: 0;
+                text-align: center;
+            }
+            .setup-stats {
+                grid-template-columns: 1fr;
+            }
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-inner">
+                <div class="top-bar-left">
+                    <a href="mailto:support@teeeveee.nl"><i class="fas fa-envelope"></i> support@teeeveee.nl</a>
+                    <a href="#"><i class="fab fa-whatsapp"></i> WhatsApp Support</a>
+                </div>
+                <div class="top-bar-right">
+                    <span class="status-dot"></span>
+                    <span class="status-text">All Systems Online</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="logo">
+                    <span class="logo-text">Teee<span class="highlight">Veee</span>.nl</span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#pricing">Pricing</a></li>
+                    <li><a href="channels.html">Channel List</a></li>
+                    <li><a href="setup.html" style="color: var(--primary);">Installation Guide</a></li>
+                    <li><a href="reseller.html">Reseller Program</a></li>
+                    <li><a href="index.html#faq">FAQ</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="https://shop.iduck.xyz" target="_blank" class="btn btn-outline">Client Login</a>
+                    <a href="index.html#pricing" class="btn btn-primary">Get Started</a>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-overlay"></div>
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <span class="logo-text">Teee<span class="highlight">Veee</span>.nl</span>
+            <button class="mobile-menu-close"><i class="fas fa-times"></i></button>
+        </div>
+        <ul class="mobile-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#pricing">Pricing</a></li>
+            <li><a href="channels.html">Channel List</a></li>
+            <li><a href="setup.html">Installation Guide</a></li>
+            <li><a href="reseller.html">Reseller Program</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: auto; padding: 120px 0 100px;">
+        <div class="hero-grid"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-play-circle"></i>
+                    <span>Quick Setup Guide</span>
+                </div>
+                <h1 class="hero-title" style="font-size: clamp(36px, 5vw, 60px);">
+                    Set Up in <span class="gradient-text">Minutes</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Stream without confusion. Use this guide to configure IPTV Smarters, TiviMate, VLC, and other players on any device.
+                </p>
+                <div class="hero-cta">
+                    <a href="#setup" class="btn btn-primary btn-lg">
+                        <i class="fas fa-rocket"></i> Start Device Setup
+                    </a>
+                    <a href="channels.html" class="btn btn-outline btn-lg">
+                        <i class="fas fa-list"></i> View Channel List
+                    </a>
+                </div>
+                <div class="setup-stats">
+                    <div class="setup-stat">
+                        <div class="setup-stat-number">10,000+</div>
+                        <div class="setup-stat-label">Guided Setups</div>
+                    </div>
+                    <div class="setup-stat">
+                        <div class="setup-stat-number">15K+</div>
+                        <div class="setup-stat-label">Device Activations</div>
+                    </div>
+                    <div class="setup-stat">
+                        <div class="setup-stat-number">99.9%</div>
+                        <div class="setup-stat-label">Success Rate</div>
+                    </div>
+                    <div class="setup-stat">
+                        <div class="setup-stat-number">24/7</div>
+                        <div class="setup-stat-label">Support Available</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label"><i class="fas fa-bolt"></i> Quick Start</div>
+                <h2 class="section-title">Up & Streaming in 5 Steps</h2>
+                <p class="section-subtitle">From purchase to watching takes only a few minutes</p>
+            </div>
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="process-num">01</div>
+                    <h4>Choose Plan</h4>
+                    <p>Select your subscription package</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-num">02</div>
+                    <h4>Checkout</h4>
+                    <p>Secure payment processing</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-num">03</div>
+                    <h4>Get Credentials</h4>
+                    <p>Instant email delivery</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-num">04</div>
+                    <h4>Install App</h4>
+                    <p>Download on your device</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-num">05</div>
+                    <h4>Start Watching</h4>
+                    <p>Enjoy 7,000+ channels</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credentials Info -->
+    <section class="content-section" style="padding: 60px 0;">
+        <div class="container">
+            <div class="credentials-box">
+                <h3><i class="fas fa-key"></i> Your Login Credentials</h3>
+                <p style="color: var(--gray); margin-bottom: 24px;">After purchase, you'll receive these details via email:</p>
+                <div class="credential-row">
+                    <span class="credential-label">Server URL</span>
+                    <span class="credential-value">http://your-server.com</span>
+                </div>
+                <div class="credential-row">
+                    <span class="credential-label">Username</span>
+                    <span class="credential-value">your_username</span>
+                </div>
+                <div class="credential-row">
+                    <span class="credential-label">Password</span>
+                    <span class="credential-value">your_password</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Device Setup Section -->
+    <section id="setup" class="content-section" style="padding: 80px 0 100px; background: var(--white);">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label"><i class="fas fa-laptop"></i> Device Setup</div>
+                <h2 class="section-title">Install TeeeVeee on Your Device</h2>
+                <p class="section-subtitle">Select your device below for step-by-step instructions</p>
+            </div>
+
+            <!-- Device Tabs -->
+            <div class="device-tabs">
+                <button class="device-tab active" data-tab="firestick">
+                    <i class="fab fa-amazon"></i>
+                    <span>Fire Stick</span>
+                </button>
+                <button class="device-tab" data-tab="android">
+                    <i class="fab fa-android"></i>
+                    <span>Android</span>
+                </button>
+                <button class="device-tab" data-tab="ios">
+                    <i class="fab fa-apple"></i>
+                    <span>iOS</span>
+                </button>
+                <button class="device-tab" data-tab="smarttv">
+                    <i class="fas fa-tv"></i>
+                    <span>Smart TV</span>
+                </button>
+                <button class="device-tab" data-tab="windows">
+                    <i class="fab fa-windows"></i>
+                    <span>Windows</span>
+                </button>
+                <button class="device-tab" data-tab="mag">
+                    <i class="fas fa-box"></i>
+                    <span>MAG Box</span>
+                </button>
+            </div>
+
+            <!-- Tab Contents -->
+            <div class="setup-container">
+                <!-- Fire Stick -->
+                <div class="tab-content active" id="firestick">
+                    <div class="setup-header-card">
+                        <div class="setup-header-icon"><i class="fab fa-amazon"></i></div>
+                        <div class="setup-header-content">
+                            <h2>Amazon Fire Stick Setup</h2>
+                            <p>Works with all Fire Stick models including 4K, 4K Max, and Fire TV Cube</p>
+                        </div>
+                        <div class="setup-time">
+                            <div class="setup-time-value">~3</div>
+                            <div class="setup-time-label">minutes</div>
+                        </div>
+                    </div>
+                    <div class="step-list">
+                        <div class="step-item">
+                            <div class="step-num">1</div>
+                            <div class="step-content">
+                                <h4>Enable Apps from Unknown Sources</h4>
+                                <p>Go to <code>Settings → My Fire TV → Developer Options</code> and enable <strong>"Apps from Unknown Sources"</strong>. On newer devices, look under <code>Privacy Settings</code>.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">2</div>
+                            <div class="step-content">
+                                <h4>Install Downloader App</h4>
+                                <p>Open Amazon App Store, search for <strong>"Downloader"</strong> by AFTVnews. Install and open it.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">3</div>
+                            <div class="step-content">
+                                <h4>Download IPTV App</h4>
+                                <p>In Downloader, type the URL for <strong>IPTV Smarters Pro</strong> or <strong>TiviMate</strong>. Click download and install when prompted.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">4</div>
+                            <div class="step-content">
+                                <h4>Login with Xtream Codes API</h4>
+                                <p>Open the app, select <strong>"Xtream Codes API"</strong> login method. Enter your Server URL, Username, and Password from your welcome email.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">5</div>
+                            <div class="step-content">
+                                <h4>Start Watching!</h4>
+                                <p>Your channels will load automatically. Browse categories, set favorites, and enjoy your content!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pro-tip">
+                        <h5><i class="fas fa-star"></i> Recommended Apps for Fire Stick</h5>
+                        <p>For the best experience, we recommend these apps:</p>
+                        <div class="app-badges">
+                            <span class="app-badge"><i class="fas fa-crown"></i> TiviMate (Best)</span>
+                            <span class="app-badge"><i class="fas fa-play"></i> IPTV Smarters Pro</span>
+                            <span class="app-badge"><i class="fas fa-play-circle"></i> Smarters Player Lite</span>
+                            <span class="app-badge"><i class="fas fa-tv"></i> XCIPTV</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Android -->
+                <div class="tab-content" id="android">
+                    <div class="setup-header-card">
+                        <div class="setup-header-icon"><i class="fab fa-android"></i></div>
+                        <div class="setup-header-content">
+                            <h2>Android Setup</h2>
+                            <p>Works on all Android phones, tablets, and TV boxes running Android 5.0+</p>
+                        </div>
+                        <div class="setup-time">
+                            <div class="setup-time-value">~2</div>
+                            <div class="setup-time-label">minutes</div>
+                        </div>
+                    </div>
+                    <div class="step-list">
+                        <div class="step-item">
+                            <div class="step-num">1</div>
+                            <div class="step-content">
+                                <h4>Download IPTV App</h4>
+                                <p>Open <strong>Google Play Store</strong> and search for <strong>"IPTV Smarters Pro"</strong> or <strong>"Smarters Player Lite"</strong>. Tap Install.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">2</div>
+                            <div class="step-content">
+                                <h4>Open & Accept Terms</h4>
+                                <p>Launch the app and accept the terms of service to continue.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">3</div>
+                            <div class="step-content">
+                                <h4>Select Xtream Codes API</h4>
+                                <p>Choose <strong>"Login with Xtream Codes API"</strong> as your login method.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">4</div>
+                            <div class="step-content">
+                                <h4>Enter Your Credentials</h4>
+                                <p>Enter your <strong>Server URL</strong>, <strong>Username</strong>, and <strong>Password</strong> from your welcome email. Tap "Add User".</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">5</div>
+                            <div class="step-content">
+                                <h4>Enjoy!</h4>
+                                <p>All your channels and VOD content will load. Start streaming!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pro-tip">
+                        <h5><i class="fas fa-lightbulb"></i> Pro Tip</h5>
+                        <p>For Android TV boxes, <strong>TiviMate</strong> offers the best interface with EPG support and picture-in-picture mode.</p>
+                    </div>
+                </div>
+
+                <!-- iOS -->
+                <div class="tab-content" id="ios">
+                    <div class="setup-header-card">
+                        <div class="setup-header-icon"><i class="fab fa-apple"></i></div>
+                        <div class="setup-header-content">
+                            <h2>iPhone & iPad Setup</h2>
+                            <p>Works on iOS 12.0 or later</p>
+                        </div>
+                        <div class="setup-time">
+                            <div class="setup-time-value">~2</div>
+                            <div class="setup-time-label">minutes</div>
+                        </div>
+                    </div>
+                    <div class="step-list">
+                        <div class="step-item">
+                            <div class="step-num">1</div>
+                            <div class="step-content">
+                                <h4>Download from App Store</h4>
+                                <p>Open the <strong>App Store</strong> and search for <strong>"IPTV Smarters"</strong> or <strong>"Smarters Player Lite"</strong>. Tap Get to install.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">2</div>
+                            <div class="step-content">
+                                <h4>Add New User</h4>
+                                <p>Open the app and tap <strong>"Add New User"</strong> or the + button.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">3</div>
+                            <div class="step-content">
+                                <h4>Select Xtream Codes API</h4>
+                                <p>Choose <strong>"Xtream Codes API"</strong> as your connection method.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">4</div>
+                            <div class="step-content">
+                                <h4>Enter Credentials & Connect</h4>
+                                <p>Fill in your login details and tap <strong>Add User</strong>. Your content loads automatically.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Smart TV -->
+                <div class="tab-content" id="smarttv">
+                    <div class="setup-header-card">
+                        <div class="setup-header-icon"><i class="fas fa-tv"></i></div>
+                        <div class="setup-header-content">
+                            <h2>Smart TV Setup</h2>
+                            <p>Samsung Tizen, LG WebOS, Sony, Philips, and more</p>
+                        </div>
+                        <div class="setup-time">
+                            <div class="setup-time-value">~5</div>
+                            <div class="setup-time-label">minutes</div>
+                        </div>
+                    </div>
+
+                    <h3 style="margin: 30px 0 20px; color: var(--primary);"><i class="fas fa-tv" style="margin-right: 10px;"></i> Samsung TV</h3>
+                    <div class="step-list">
+                        <div class="step-item">
+                            <div class="step-num">1</div>
+                            <div class="step-content">
+                                <h4>Open Samsung Apps</h4>
+                                <p>Press the <strong>Smart Hub</strong> button on your remote and navigate to <code>Apps</code>.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">2</div>
+                            <div class="step-content">
+                                <h4>Search & Install</h4>
+                                <p>Search for <strong>"Smart IPTV"</strong> or <strong>"IPTV Smarters"</strong> and install the app.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">3</div>
+                            <div class="step-content">
+                                <h4>Enter Your Credentials</h4>
+                                <p>Open the app and enter your M3U URL or Xtream Codes login details.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 style="margin: 40px 0 20px; color: var(--primary);"><i class="fas fa-tv" style="margin-right: 10px;"></i> LG TV</h3>
+                    <div class="step-list">
+                        <div class="step-item">
+                            <div class="step-num">1</div>
+                            <div class="step-content">
+                                <h4>Open LG Content Store</h4>
+                                <p>Press <strong>Home</strong> and navigate to <code>LG Content Store</code>.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">2</div>
+                            <div class="step-content">
+                                <h4>Download SS IPTV</h4>
+                                <p>Search for <strong>"SS IPTV"</strong> or <strong>"Smart IPTV"</strong> and install.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">3</div>
+                            <div class="step-content">
+                                <h4>Upload Playlist</h4>
+                                <p>Note the MAC address shown in the app, visit <code>siptv.eu/mylist</code> on your computer to upload your M3U playlist.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Windows -->
+                <div class="tab-content" id="windows">
+                    <div class="setup-header-card">
+                        <div class="setup-header-icon"><i class="fab fa-windows"></i></div>
+                        <div class="setup-header-content">
+                            <h2>Windows PC Setup</h2>
+                            <p>Works on Windows 7, 8, 10, and 11</p>
+                        </div>
+                        <div class="setup-time">
+                            <div class="setup-time-value">~3</div>
+                            <div class="setup-time-label">minutes</div>
+                        </div>
+                    </div>
+                    <div class="step-list">
+                        <div class="step-item">
+                            <div class="step-num">1</div>
+                            <div class="step-content">
+                                <h4>Download VLC Player</h4>
+                                <p>Visit <code>videolan.org</code> and download VLC Media Player for Windows.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">2</div>
+                            <div class="step-content">
+                                <h4>Open Network Stream</h4>
+                                <p>In VLC, go to <code>Media → Open Network Stream</code> (or press <strong>Ctrl+N</strong>).</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">3</div>
+                            <div class="step-content">
+                                <h4>Paste M3U URL</h4>
+                                <p>Paste your M3U URL from the welcome email and click <strong>Play</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pro-tip">
+                        <h5><i class="fas fa-star"></i> Better Alternative</h5>
+                        <p>Download <strong>IPTV Smarters for Windows</strong> for a much better experience with EPG, categories, favorites, and a modern interface.</p>
+                    </div>
+                </div>
+
+                <!-- MAG Box -->
+                <div class="tab-content" id="mag">
+                    <div class="setup-header-card">
+                        <div class="setup-header-icon"><i class="fas fa-box"></i></div>
+                        <div class="setup-header-content">
+                            <h2>MAG Box Setup</h2>
+                            <p>MAG 250, 254, 322, 324, 420, 520 and all Infomir devices</p>
+                        </div>
+                        <div class="setup-time">
+                            <div class="setup-time-value">~5</div>
+                            <div class="setup-time-label">minutes</div>
+                        </div>
+                    </div>
+                    <div class="step-list">
+                        <div class="step-item">
+                            <div class="step-num">1</div>
+                            <div class="step-content">
+                                <h4>Get Your MAC Address</h4>
+                                <p>Go to <code>Settings → System Settings → Network</code> and note your MAC address (starts with <strong>00:1A:79</strong>).</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">2</div>
+                            <div class="step-content">
+                                <h4>Send MAC to Support</h4>
+                                <p>Contact our support team via WhatsApp or email with your MAC address to activate your device.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">3</div>
+                            <div class="step-content">
+                                <h4>Configure Portal URL</h4>
+                                <p>Go to <code>Settings → Servers → Portals</code>. Enter Portal Name: <strong>TeeeVeee</strong> and the Portal URL provided by support.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">4</div>
+                            <div class="step-content">
+                                <h4>Restart & Watch</h4>
+                                <p>Save settings and restart your MAG box. The portal loads automatically!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Need Help Section -->
+    <section class="reseller-section">
+        <div class="container">
+            <div class="reseller-content">
+                <div class="section-header">
+                    <h2 class="section-title">Need Help?</h2>
+                    <p class="section-subtitle">Our support team is available 24/7 to help you get set up</p>
+                </div>
+                <div class="reseller-grid">
+                    <div class="reseller-card">
+                        <i class="fab fa-whatsapp"></i>
+                        <h3>WhatsApp</h3>
+                        <p>Get instant help via WhatsApp chat. Average response time under 5 minutes.</p>
+                    </div>
+                    <div class="reseller-card">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email</h3>
+                        <p>support@teeeveee.nl</p>
+                    </div>
+                    <div class="reseller-card">
+                        <i class="fas fa-video"></i>
+                        <h3>Video Guides</h3>
+                        <p>Watch our setup tutorials on YouTube for visual guidance.</p>
+                    </div>
+                </div>
+                <a href="index.html#pricing" class="btn btn-white btn-lg">
+                    <i class="fas fa-shopping-cart"></i> Get Started Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <span class="logo-text" style="font-size: 24px;">Teee<span class="highlight">Veee</span>.nl</span>
+                    <p style="margin-top: 20px;">Premium IPTV streaming with 7,000+ live channels and 40,000+ movies & series.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#pricing">Pricing</a></li>
+                        <li><a href="channels.html">Channel List</a></li>
+                        <li><a href="index.html#features">Features</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="index.html#faq">FAQ</a></li>
+                        <li><a href="setup.html">Installation Guide</a></li>
+                        <li><a href="reseller.html">Reseller Program</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fab fa-whatsapp" style="color: var(--primary); margin-right: 8px;"></i> WhatsApp</li>
+                        <li><i class="fas fa-envelope" style="color: var(--primary); margin-right: 8px;"></i> support@teeeveee.nl</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TeeeVeee.nl - All rights reserved</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Widget -->
+    <div class="whatsapp-widget">
+        <a href="#" class="whatsapp-btn">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Device Tab Switching
+        const deviceTabs = document.querySelectorAll('.device-tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        deviceTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active from all
+                deviceTabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+
+                // Add active to clicked
+                tab.classList.add('active');
+                const target = document.getElementById(tab.dataset.tab);
+                if (target) target.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

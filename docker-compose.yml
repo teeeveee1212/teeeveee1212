@@ -1,0 +1,9 @@
+services:
+  teeeveee:
+    build: .
+    container_name: teeeveee-nl
+    ports:
+      - "8085:80"
+    restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
