@@ -789,32 +789,15 @@ body {
 }
 
 .movie-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 8px;
-    background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    display: none;
 }
 
 .movie-title {
-    color: white;
-    font-weight: 600;
-    font-size: 11px;
-    margin-bottom: 3px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    display: none;
 }
 
 .movie-badge {
-    display: inline-block;
-    background: var(--primary);
-    color: white;
-    font-size: 8px;
-    font-weight: 600;
-    padding: 2px 5px;
-    border-radius: 3px;
+    display: none;
 }
 
 /* Content Showcase Section */
@@ -899,13 +882,6 @@ body {
     opacity: 1;
 }
 
-.channel-logo-item span {
-    font-weight: 700;
-    font-size: 13px;
-    color: #333;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
 
 @media (max-width: 768px) {
     .channel-logos-grid {
