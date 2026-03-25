@@ -4,24 +4,11 @@
 
 - **GitHub Pages:** https://teeeveee1212.github.io/teeeveee1212/
 - **Custom Domain:** shop.teeeveee.nl (configure in repo settings)
-- **Local Docker:** http://webserver.thefrostbank.com:8085
 
 ## GitHub Repository
 
 - **Repo:** https://github.com/teeeveee1212/teeeveee1212
 - **Account:** teeeveee1212
-
-## Quick Commands
-
-```bash
-# Push changes
-cd /opt/teeeveee
-git add -A && git commit -m "Update" && git push
-
-# Rebuild Docker locally
-docker stop teeeveee && docker rm teeeveee
-docker build -t teeeveee-website . && docker run -d --name teeeveee -p 8085:80 teeeveee-website
-```
 
 ## To Set Custom Domain (shop.teeeveee.nl)
 
