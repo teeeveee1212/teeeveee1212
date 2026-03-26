@@ -758,11 +758,11 @@ body {
 }
 
 @keyframes movie-scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-164px * 12)); }
 }
 
-/* Movie Cards - Match nartiel8k.com exactly */
+/* Movie Cards */
 .movie-card {
     flex-shrink: 0;
     width: 148px;
@@ -834,6 +834,13 @@ body {
 .showcase-desc {
     color: var(--gray);
     font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.showcase-note {
+    color: #999;
+    font-size: 12px;
+    font-style: italic;
     margin-bottom: 25px;
 }
 
@@ -845,15 +852,20 @@ body {
 .marquee-track {
     display: flex;
     gap: 16px;
-    animation: movie-scroll 30s linear infinite;
     width: max-content;
+    animation: marquee-scroll 25s linear infinite;
+}
+
+@keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
 .marquee-track:hover {
     animation-play-state: paused;
 }
 
-/* Channel Logos Section - Compact like nartiel8k */
+/* Channel Logos Section */
 .channel-logos-grid {
     display: flex;
     flex-wrap: wrap;
@@ -880,6 +892,18 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     border-color: var(--primary);
+}
+
+.channel-logo-item img {
+    max-width: 60px;
+    max-height: 30px;
+    object-fit: contain;
+    opacity: 0.7;
+    transition: all 0.2s ease;
+}
+
+.channel-logo-item:hover img {
+    opacity: 1;
 }
 
 .channel-logo-item span {
