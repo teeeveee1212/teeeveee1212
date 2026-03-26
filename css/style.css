@@ -1952,3 +1952,29 @@ body {
         align-items: center;
     }
 }
+
+/* Players grid responsive */
+@media (max-width: 768px) {
+    .players-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .players-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+
+    .pricing-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Reviews grid responsive */
+@media (max-width: 900px) {
+    .reviews-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+}
