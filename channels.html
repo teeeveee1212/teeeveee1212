@@ -118,6 +118,118 @@
         .category-music { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); }
         .category-adult { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
         .category-international { background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); }
+
+        /* Modal Styles */
+        .channel-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .channel-modal.active {
+            display: flex;
+        }
+        .channel-modal-content {
+            background: white;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 700px;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .channel-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            border-bottom: 1px solid #eee;
+            background: linear-gradient(135deg, var(--primary) 0%, #ff8533 100%);
+        }
+        .channel-modal-header h3 {
+            color: white;
+            font-size: 20px;
+            margin: 0;
+        }
+        .modal-close {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.2s;
+        }
+        .modal-close:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .channel-modal-search {
+            padding: 16px 24px;
+            border-bottom: 1px solid #eee;
+            position: relative;
+        }
+        .channel-modal-search i {
+            position: absolute;
+            left: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+        .channel-modal-search input {
+            width: 100%;
+            padding: 12px 16px 12px 40px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .channel-modal-search input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .channel-modal-body {
+            padding: 16px 24px;
+            overflow-y: auto;
+            flex: 1;
+        }
+        .channel-item {
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-bottom: 6px;
+            background: #f8f9fa;
+            font-size: 14px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .channel-item:hover {
+            background: #fff5f0;
+        }
+        .channel-item i {
+            color: var(--primary);
+            font-size: 12px;
+        }
+        .channel-item.hidden {
+            display: none;
+        }
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+        .category-card {
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -605,6 +717,23 @@
         </div>
     </section>
 
+    <!-- Channel Modal -->
+    <div id="channelModal" class="channel-modal">
+        <div class="channel-modal-content">
+            <div class="channel-modal-header">
+                <h3 id="modalTitle">Category Name</h3>
+                <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="channel-modal-search">
+                <i class="fas fa-search"></i>
+                <input type="text" id="modalSearch" placeholder="Search channels...">
+            </div>
+            <div class="channel-modal-body" id="channelList">
+                <!-- Channels will be loaded here -->
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -667,23 +796,129 @@
 
     <script src="js/main.js"></script>
     <script>
-        // Category search functionality
+        // Channel data
+        let channelData = {};
+
+        // Category mapping
+        const categoryMap = {
+            'sports': ['US-SPORTS', 'UK-SPORTS', 'VIP WORLD SPORTS'],
+            'ppv': ['PPV EVENTS'],
+            'nfl': ['NFL'],
+            'nba': ['NBA/WNBA'],
+            'nhl': ['HOCKEY'],
+            'mlb': ['MLB'],
+            'ncaa': ['NCAA FOOTBALL', 'MARCH MADNESS', 'BIG TEN'],
+            'racing': ['MOTORSPORTS', 'F1', 'DIRTVISION'],
+            'soccer': ['FUTBALL - EUROPE', 'FUTBALL - AMERICAS', 'FUTBALL - OTHER', 'LA LIGA'],
+            'premier': ['PREMIER LEAGUE'],
+            'bein': ['BEIN SPORTS'],
+            'dazn': ['DAZN EVENTS'],
+            'usa': ['US-LOCALS', 'US-ENTERTAINMENT', 'US-NEWS', 'NATIONAL FEEDS'],
+            'uk': ['UK-ENTERTAINMENT', 'UK-MOVIES', 'UK-SPORTS'],
+            'canada': ['CANADA'],
+            'europe-west': ['EUROPE - WESTERN'],
+            'europe-south': ['EUROPE - SOUTHERN'],
+            'poland': ['POLAND'],
+            'latino': ['AMERICAS - LATINO'],
+            'mexico': ['MEXICO'],
+            'south-america': ['AMERICAS - SOUTH'],
+            'caribbean': ['AMERICAS - CENTRAL & CARIBBEAN'],
+            'middle-east': ['MIDDLE EAST - OTHER'],
+            'india': ['INDIA'],
+            'ireland': ['IRELAND'],
+            'romania': ['ROMANIA'],
+            'movies': ['PREMIUM MOVIES'],
+            'cinebox': ['CINEBOX'],
+            'docubox': ['DOCUBOX'],
+            'music': ['MUSIC  CHOICE'],
+            'kids': ['KIDS'],
+            '247': ['24/7 Channels'],
+            'adult': ['ADULT']
+        };
+
+        // Load channel data
+        fetch('js/channels.json')
+            .then(response => response.json())
+            .then(data => { channelData = data; })
+            .catch(err => console.error('Error loading channels:', err));
+
+        // Category search
         const searchInput = document.getElementById('channelSearch');
         const categoryCards = document.querySelectorAll('.category-card');
 
         searchInput.addEventListener('input', function() {
             const searchTerm = this.value.toLowerCase();
-
             categoryCards.forEach(card => {
                 const title = card.querySelector('h3').textContent.toLowerCase();
                 const desc = card.querySelector('p').textContent.toLowerCase();
-
-                if (title.includes(searchTerm) || desc.includes(searchTerm)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
+                card.style.display = (title.includes(searchTerm) || desc.includes(searchTerm)) ? 'flex' : 'none';
             });
+        });
+
+        // Category click handler
+        categoryCards.forEach(card => {
+            card.addEventListener('click', function() {
+                openModal(this.dataset.category, this.querySelector('h3').textContent);
+            });
+        });
+
+        function openModal(category, title) {
+            const modal = document.getElementById('channelModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const channelList = document.getElementById('channelList');
+            const modalSearch = document.getElementById('modalSearch');
+
+            modalTitle.textContent = title;
+            modalSearch.value = '';
+            channelList.textContent = '';
+
+            let channels = [];
+            const jsonCategories = categoryMap[category] || [];
+            jsonCategories.forEach(cat => {
+                if (channelData[cat]) channels = channels.concat(channelData[cat]);
+            });
+            channels.sort();
+
+            if (channels.length > 0) {
+                channels.forEach(ch => {
+                    const div = document.createElement('div');
+                    div.className = 'channel-item';
+                    const icon = document.createElement('i');
+                    icon.className = 'fas fa-tv';
+                    div.appendChild(icon);
+                    div.appendChild(document.createTextNode(ch));
+                    channelList.appendChild(div);
+                });
+            } else {
+                const div = document.createElement('div');
+                div.className = 'no-results';
+                div.textContent = 'Channel list not available for this category';
+                channelList.appendChild(div);
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Modal search filter
+        document.getElementById('modalSearch').addEventListener('input', function() {
+            const term = this.value.toLowerCase();
+            document.querySelectorAll('.channel-item').forEach(item => {
+                item.classList.toggle('hidden', !item.textContent.toLowerCase().includes(term));
+            });
+        });
+
+        function closeModal() {
+            document.getElementById('channelModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('channelModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
         });
     </script>
 </body>
