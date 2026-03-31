@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TeeeVeee.nl - Web Player</title>
-    <meta name="description" content="TeeeVeee.nl - Stream your favourite channels directly in your browser.">
+    <title>TeeeVeee.nl - Reports</title>
+    <meta name="description" content="TeeeVeee.nl - View your reports and statistics.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -56,33 +56,6 @@
             height: 100%;
             border: none;
         }
-        .player-info {
-            margin-top: 30px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .player-info-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 24px;
-            text-align: center;
-        }
-        .player-info-card i {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 12px;
-        }
-        .player-info-card h3 {
-            color: var(--white);
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-        }
-        .player-info-card p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
         @media (max-width: 768px) {
             .player-header h1 { font-size: 1.8rem; }
             .player-section { padding: 120px 0 40px; }
@@ -119,12 +92,12 @@
                     <li><a href="../channels.html">Channel List</a></li>
                     <li><a href="../setup.html">Installation Guide</a></li>
                     <li><a href="../reseller.html">Reseller Program</a></li>
-                    <li><a href="../player/" class="active">Player</a></li>
-                    <li><a href="../reports/">Reports</a></li>
+                    <li><a href="../player/">Player</a></li>
+                    <li><a href="../reports/" class="active">Reports</a></li>
                 </ul>
                 <div class="nav-actions">
                     <a href="https://shop.iduck.xyz" target="_blank" class="btn btn-outline">Client Login</a>
-                    <a href="index.html#pricing" class="btn btn-primary">Get Started</a>
+                    <a href="../index.html#pricing" class="btn btn-primary">Get Started</a>
                 </div>
                 <button class="mobile-menu-btn" aria-label="Menu">
                     <span></span>
@@ -135,32 +108,15 @@
         </div>
     </header>
 
-    <!-- Player Section -->
+    <!-- Reports Section -->
     <section class="player-section">
         <div class="player-container">
             <div class="player-header">
-                <h1>Web <span class="highlight">Player</span></h1>
-                <p>Stream directly in your browser — no app required</p>
+                <h1><span class="highlight">Reports</span></h1>
+                <p>View your reports and statistics</p>
             </div>
             <div class="player-wrapper">
-                <iframe src="https://saas-proxy.iduck.xyz" allowfullscreen allow="autoplay; encrypted-media; fullscreen"></iframe>
-            </div>
-            <div class="player-info">
-                <div class="player-info-card">
-                    <i class="fas fa-desktop"></i>
-                    <h3>Any Device</h3>
-                    <p>Works on any device with a modern web browser</p>
-                </div>
-                <div class="player-info-card">
-                    <i class="fas fa-bolt"></i>
-                    <h3>Instant Access</h3>
-                    <p>No downloads or installations needed</p>
-                </div>
-                <div class="player-info-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Secure Stream</h3>
-                    <p>Encrypted connection for safe viewing</p>
-                </div>
+                <iframe src="https://whitereports.iduck.xyz/" allowfullscreen></iframe>
             </div>
         </div>
     </section>
@@ -181,17 +137,17 @@
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html#pricing">Pricing</a></li>
-                        <li><a href="channels.html">Channel List</a></li>
-                        <li><a href="reseller.html">Reseller Program</a></li>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../index.html#pricing">Pricing</a></li>
+                        <li><a href="../channels.html">Channel List</a></li>
+                        <li><a href="../reseller.html">Reseller Program</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Support</h4>
                     <ul>
-                        <li><a href="index.html#faq">FAQ</a></li>
-                        <li><a href="setup.html">Installation Guide</a></li>
+                        <li><a href="../index.html#faq">FAQ</a></li>
+                        <li><a href="../setup.html">Installation Guide</a></li>
                         <li><a href="https://shop.iduck.xyz/contact.php">Submit Ticket</a></li>
                     </ul>
                 </div>
