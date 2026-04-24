@@ -18,7 +18,7 @@ function Nav({ current }) {
   return (
     <header className="nav">
       <div className="container nav-inner">
-        <a href="TeeeVEE Landing.html" className="logo">
+        <a href="TeeeVEE%20Landing.html" className="logo">
           <span className="logo-mark">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h12v3h-4v13h-4V7H6z"/></svg>
           </span>
@@ -48,7 +48,7 @@ function Footer() {
       <div className="container foot-row">
         <div>© 2026 TeeeVEE · <a href="mailto:support@teeeveee.nl" style={{color:'var(--accent)'}}>support@teeeveee.nl</a></div>
         <div style={{display:'flex', gap:18}}>
-          <a href="TeeeVEE Landing.html">Home</a>
+          <a href="TeeeVEE%20Landing.html">Home</a>
           <a href="channels.html">Channels</a>
           <a href="setup.html">Players</a>
           <a href="Installation.html">Install</a>

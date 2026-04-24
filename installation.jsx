@@ -353,7 +353,7 @@ function App() {
             </div>
             <div style={{display:'flex', gap:10, flexWrap:'wrap'}}>
               <a href="mailto:support@teeeveee.nl?subject=Help installing TeeeVEE" className="btn btn-primary">Book a setup call <Arrow /></a>
-              <a href="Players.html" className="btn btn-ghost">Compare players</a>
+              <a href="setup.html" className="btn btn-ghost">Compare players</a>
             </div>
           </div>
         </div>
