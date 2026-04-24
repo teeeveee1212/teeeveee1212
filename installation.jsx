@@ -4,7 +4,7 @@ const DEVICES = [
   {
     id: 'firestick',
     name: 'Fire TV / Fire Stick',
-    icon: '🔥',
+    icon: '',
     player: 'IPTV Smarters Pro',
     time: '4 min',
     popular: true,
@@ -24,7 +24,7 @@ const DEVICES = [
   {
     id: 'androidtv',
     name: 'Android TV / Google TV',
-    icon: '📺',
+    icon: '',
     player: 'TiviMate',
     time: '3 min',
     steps: [
@@ -54,7 +54,7 @@ const DEVICES = [
   {
     id: 'android',
     name: 'Android phone / tablet',
-    icon: '🤖',
+    icon: '',
     player: 'IPTV Smarters Pro',
     time: '2 min',
     steps: [
@@ -69,7 +69,7 @@ const DEVICES = [
   {
     id: 'samsung',
     name: 'Samsung Smart TV',
-    icon: '📡',
+    icon: '',
     player: 'Smart IPTV',
     time: '6 min',
     steps: [
@@ -103,7 +103,7 @@ const DEVICES = [
   {
     id: 'mag',
     name: 'MAG Box / STB',
-    icon: '📦',
+    icon: '',
     player: 'Built-in portal',
     time: '3 min',
     steps: [
@@ -120,7 +120,7 @@ const DEVICES = [
   {
     id: 'computer',
     name: 'Windows / Mac / Linux',
-    icon: '💻',
+    icon: '',
     player: 'VLC or IPTV Smarters',
     time: '2 min',
     steps: [

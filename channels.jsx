@@ -37,6 +37,7 @@ function Logo({ name }) {
 
 function App() {
   const [data, setData] = useState(null);
+  const [meta, setMeta] = useState(null);
   const [err, setErr] = useState(null);
   const [cat, setCat] = useState('All');
   const [q, setQ] = useState('');
@@ -47,6 +48,10 @@ function App() {
       .then(r => r.json())
       .then(setData)
       .catch(e => setErr(String(e)));
+    fetch('js/channels-updated.json')
+      .then(r => r.json())
+      .then(setMeta)
+      .catch(() => {});
   }, []);
 
   const { flat, catCounts, categories, total } = useMemo(() => {
@@ -84,10 +89,11 @@ function App() {
         <div className="container">
           <span className="eyebrow">Channel list</span>
           <h1 className="display" style={{marginTop: 16, fontSize: 'clamp(40px, 6vw, 72px)'}}>
-            {total ? total.toLocaleString() : '10,000+'} channels. <em>One subscription.</em>
+            {total ? total.toLocaleString() : '11,000+'} live channels <em>+ {meta ? meta.vod_count.toLocaleString() : '62,000+'} VOD titles.</em>
           </h1>
           <p className="lede" style={{marginTop: 14}}>
-            Search the full live lineup below. Quality tags are auto-detected from the channel name. The real list updates in your IPTV app automatically.
+            Search the full live lineup below. On-demand movies and series are available in your IPTV app and aren't listed here. Quality tags are auto-detected from the channel name.
+            {meta && meta.updated_utc && <span style={{color:'var(--ink-mute)'}}> Last updated {new Date(meta.updated_utc).toLocaleDateString()}.</span>}
           </p>
         </div>
       </div>
@@ -104,7 +110,7 @@ function App() {
               <input
                 value={q}
                 onChange={e => setQ(e.target.value)}
-                placeholder="Search 10,000+ channels..."
+                placeholder={data ? `Search ${total.toLocaleString()} channels...` : 'Search channels...'}
                 style={{
                   width:'100%', padding: '14px 16px 14px 44px',
                   border:'1px solid var(--line)', borderRadius: 999,
@@ -193,7 +199,7 @@ function App() {
           }}>
             <div>
               <div className="eyebrow">Full lineup</div>
-              <div className="display" style={{fontSize: 32, marginTop: 10}}>See all {total ? total.toLocaleString() : '10,000+'} live channels.</div>
+              <div className="display" style={{fontSize: 32, marginTop: 10}}>See all {total ? total.toLocaleString() : '11,000+'} live channels{meta ? ` + ${meta.vod_count.toLocaleString()} VOD titles` : ''}.</div>
               <p style={{color:'var(--ink-mute)', fontSize: 14, marginTop: 8, maxWidth: '50ch'}}>
                 Start your 24-hour trial for $2.50 and browse the complete list in your IPTV app of choice.
               </p>
