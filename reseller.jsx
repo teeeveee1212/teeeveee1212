@@ -106,7 +106,7 @@ function App() {
                   { k: '$2', v: 'Per credit (first-time)' },
                   { k: '$100', v: 'Minimum buy' },
                   { k: '80%+', v: 'Profit margins' },
-                  { k: '99.9%', v: 'Uptime SLA' },
+                  { k: '100%', v: 'Uptime SLA' },
                 ].map(s => (
                   <div key={s.v}>
                     <div style={{fontFamily:'Instrument Serif, serif', fontSize: 36, lineHeight:1}}>{s.k}</div>

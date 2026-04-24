@@ -57,7 +57,7 @@ const FAQS = [
   { q: 'Can I watch on multiple devices at the same time?',
     a: 'Yes — choose the 2-connection option at checkout. You can watch two different streams simultaneously, perfect for households or the bedroom + living room combo.' },
   { q: 'Is there buffering or lag?',
-    a: 'Our servers are built on a load-balanced global network with 99.9% uptime. Provided you have a stable 10+ Mbps connection, streaming is smooth in full HD and 4K where available.' },
+    a: 'Our servers are built on a load-balanced global network with 100% uptime. Provided you have a stable 10+ Mbps connection, streaming is smooth in full HD and 4K where available.' },
   { q: 'What is your refund policy?',
     a: 'We offer a 24-hour trial so you can test everything before committing. If you have an issue within the first 48 hours of a paid plan, reach out and we\'ll make it right.' },
   { q: 'Do I need a VPN?',
@@ -178,7 +178,7 @@ function Hero({ headlineVariant }) {
             </div>
             <div className="float-chip chip-br">
               <div>
-                <div className="num">99.9%</div>
+                <div className="num">100%</div>
                 <div className="lbl">Uptime</div>
               </div>
             </div>
@@ -216,7 +216,7 @@ function Hero({ headlineVariant }) {
           {[
             { n: '10,000+', l: 'Live channels' },
             { n: '40,000+', l: 'Movies & series (VOD)' },
-            { n: '99.9%',  l: 'Uptime guarantee' },
+            { n: '100%',  l: 'Uptime guarantee' },
             { n: '24/7',   l: 'Human support' },
           ].map((s, i) => (
             <div className="stat" key={i}>

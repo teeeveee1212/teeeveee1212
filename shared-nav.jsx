@@ -27,14 +27,14 @@ function Nav({ current }) {
         <nav className="nav-links">
           <a href="TeeeVEE%20Landing.html#what" className={current === 'home' ? 'active' : ''}>Home</a>
           <a href="channels.html" className={current === 'channels' ? 'active' : ''}>Channels</a>
-          <a href="Player.html" className={current === 'player' ? 'active' : ''}>Web Player</a>
+          <a href="Installation.html#players" className={current === 'players' ? 'active' : ''}>Players</a>
           <a href="Installation.html" className={current === 'install' ? 'active' : ''}>Install</a>
           <a href="Reseller.html" className={current === 'reseller' ? 'active' : ''}>Reseller</a>
           <a href="TeeeVEE%20Landing.html#pricing">Pricing</a>
           <a href="TeeeVEE%20Landing.html#faq">FAQ</a>
         </nav>
         <div className="nav-cta">
-          <a href="TeeeVEE%20Landing.html#pricing" className="btn btn-ghost btn-sm">Pricing</a>
+          <a href="Player.html" className="btn btn-ghost btn-sm">Web Player</a>
           <a href={current === 'reseller' ? 'https://shop.iduck.xyz/store/boomcash/credits' : 'https://shop.iduck.xyz/store/flyers'} className="btn btn-primary btn-sm">Get started <Arrow /></a>
         </div>
       </div>
@@ -50,8 +50,9 @@ function Footer() {
         <div style={{display:'flex', gap:18}}>
           <a href="TeeeVEE%20Landing.html">Home</a>
           <a href="channels.html">Channels</a>
-          <a href="Player.html">Web Player</a>
+          <a href="Installation.html#players">Players</a>
           <a href="Installation.html">Install</a>
+          <a href="Player.html">Web Player</a>
           <a href="Reseller.html">Reseller</a>
           <a href="TeeeVEE%20Landing.html#pricing">Pricing</a>
         </div>

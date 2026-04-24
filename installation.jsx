@@ -1,5 +1,15 @@
 const { useState: useStateI } = React;
 
+const PLAYERS = [
+  { n: 'IPTV Smarters Pro', d: 'Most popular. Fire Stick, Android, iOS, and desktop.', url: 'https://www.iptvsmarters.com/' },
+  { n: 'TiviMate',          d: 'Best on Android TV & Google TV. Polished UI + EPG.', url: 'https://tivimate.com/' },
+  { n: 'Smart IPTV (SIPTV)',d: 'Samsung & LG Smart TVs. One-time €5.49 activation.', url: 'https://siptv.app/' },
+  { n: 'VLC',               d: 'Works on everything, free. Good fallback for desktop.', url: 'https://www.videolan.org/vlc/' },
+  { n: 'GSE Smart IPTV',    d: 'iOS and iPadOS. Solid Xtream Codes support.', url: 'https://www.gsesmartiptv.com/' },
+  { n: 'Perfect Player',    d: 'Lightweight Android player. Fast and minimal.', url: 'https://niklabs.com/' },
+];
+
+
 const DEVICES = [
   {
     id: 'firestick',
@@ -271,6 +281,39 @@ function App() {
           </div>
         </div>
       </div>
+
+      <section id="players" style={{paddingBottom: 40}}>
+        <div className="container">
+          <div style={{maxWidth: 720, marginBottom: 28}}>
+            <span className="eyebrow">Recommended players</span>
+            <h2 className="display" style={{fontSize: 36, marginTop: 10}}>Pick a player, then an install guide.</h2>
+            <p className="lede" style={{marginTop: 12}}>
+              Any of these apps work with your TeeeVEE subscription via Xtream Codes or M3U URL. Use the device guide below to install one.
+            </p>
+          </div>
+          <div style={{
+            display:'grid',
+            gridTemplateColumns:'repeat(auto-fit, minmax(260px, 1fr))',
+            gap: 14,
+          }}>
+            {PLAYERS.map(p => (
+              <a key={p.n} href={p.url} target="_blank" rel="noopener" style={{
+                display:'block', padding: 22,
+                background:'#fff', border:'1px solid var(--line)', borderRadius: 18,
+                transition: 'border-color .2s, transform .2s',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor='var(--ink)'; e.currentTarget.style.transform='translateY(-2px)'; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor='var(--line)'; e.currentTarget.style.transform=''; }}>
+                <div style={{fontSize: 16, fontWeight: 600, marginBottom: 6}}>{p.n}</div>
+                <div style={{fontSize: 13, color:'var(--ink-soft)', lineHeight: 1.55}}>{p.d}</div>
+                <div style={{fontSize: 12, color:'var(--accent)', marginTop: 12, fontFamily:'JetBrains Mono, monospace', letterSpacing:'.08em'}}>
+                  VISIT →
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section id="devices">
         <div className="container">
