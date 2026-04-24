@@ -119,13 +119,13 @@ function Nav() {
           <a href="#what">What is IPTV</a>
           <a href="#content">Content</a>
           <a href="#pricing">Pricing</a>
-          <a href="#devices">Devices</a>
+          <a href="Installation.html#players">Players</a>
           <a href="Installation.html">Install</a>
           <a href="Reseller.html">Reseller</a>
           <a href="#faq">FAQ</a>
         </nav>
         <div className="nav-cta">
-          <a href="#pricing" className="btn btn-ghost btn-sm">View plans</a>
+          <a href="Player.html" className="btn btn-ghost btn-sm">Web Player</a>
           <a href={ORDER_URL} className="btn btn-primary btn-sm">Get started <Icon.Arrow /></a>
         </div>
       </div>
