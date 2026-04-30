@@ -3,64 +3,97 @@ const { useState } = React;
 const RESELLER_SIGNUP_URL = 'https://shop.iduck.xyz/store/boomcash/credits';
 const SUPPORT_TICKET_URL  = 'https://shop.iduck.xyz/contact.php';
 
-// Real pricing: flat $2/credit first-time rate, $100 minimum (50 credits), no max.
-// We show the minimum pack as the featured tier plus two example bulk amounts.
+// Real pricing from shop.iduck.xyz/store/boomcash/credits.
+// First-time buyers get a $2/credit promo (50-credit minimum = $100).
+// Regular tiers: per-credit rate goes down as you buy more.
+//   total = credits × per
+const FIRST_TIME = {
+  credits: 50,
+  per: 2.00,
+  price: 100,   // 50 × $2.00
+};
 const TIERS = [
   {
-    name: 'Minimum',
-    credits: 50,
-    price: 100,
-    per: 2.00,
+    name: 'Starter',
+    credits: 20,
+    per: 5.50,
+    price: 110,  // 20 × $5.50
     save: null,
     features: [
-      '$2 per credit · first-time rate',
-      'Use credits to create 1, 3, 6 or 12-month lines',
-      'Full reseller panel access',
+      '$5.50 per credit',
+      'Try the panel before scaling up',
       'M3U & Xtream Codes for every line',
+      'Email support',
     ],
   },
   {
-    name: 'Popular',
-    credits: 100,
-    price: 200,
-    per: 2.00,
-    save: null,
+    name: 'Standard',
+    credits: 40,
+    per: 5.00,
+    price: 200,  // 40 × $5.00
+    save: 'Save 9%',
+    features: [
+      '$5.00 per credit',
+      'Good fit for a small customer base',
+      'Bulk line creation',
+      'Email support',
+    ],
+  },
+  {
+    name: 'Pro',
+    credits: 80,
+    per: 4.50,
+    price: 360,  // 80 × $4.50
+    save: 'Save 18%',
     popular: true,
     features: [
-      '$2 per credit · same flat rate',
-      'Typical pack resellers start with',
-      'Priority support on reseller tickets',
-      'Credits never expire',
+      '$4.50 per credit',
+      'Most popular pack',
+      'Priority reseller support',
+      'Branded signup page',
     ],
   },
   {
-    name: 'Scale',
-    credits: 250,
-    price: 500,
-    per: 2.00,
-    save: null,
+    name: 'Business',
+    credits: 160,
+    per: 3.50,
+    price: 560,  // 160 × $3.50
+    save: 'Save 36%',
     features: [
-      '$2 per credit · no bulk discount needed',
-      'Buy as many as you need — no maximum',
-      'Example: sell 250 subs @ $12 = $3,000 revenue',
-      'Dedicated support channel',
+      '$3.50 per credit',
+      'Volume rate for active resellers',
+      'Custom subdomain hosting',
+      'Dedicated account manager',
+    ],
+  },
+  {
+    name: 'Enterprise',
+    credits: 400,
+    per: 3.00,
+    price: 1200, // 400 × $3.00
+    save: 'Save 45%',
+    features: [
+      '$3.00 per credit · best rate',
+      'Lowest cost per credit',
+      'Private Telegram support channel',
+      'Custom integrations',
     ],
   },
 ];
 
 const STEPS = [
-  { n: '01', t: 'Buy credits', d: 'Purchase a credit pack on shop.iduck.xyz. $100 minimum (50 credits), no maximum. Credits never expire.' },
+  { n: '01', t: 'Buy credits', d: 'Purchase a credit pack on shop.iduck.xyz. First-time buyers: 50 credits for $100 ($2 each). Regular tiers from $5.50/credit, dropping to $3 at 400-credit volume. Credits never expire.' },
   { n: '02', t: 'Get panel access', d: 'Reseller panel access is delivered alongside your credits — no separate approval wait.' },
   { n: '03', t: 'Create lines on demand', d: 'Use the panel to instantly generate M3U or Xtream Codes lines for your customers.' },
-  { n: '04', t: 'Keep the margin', d: 'Charge whatever you want. Buy at $2, sell at $12+ — that\'s 80%+ profit per subscription.' },
+  { n: '04', t: 'Keep the margin', d: 'Charge whatever you want. With the first-time $2 rate you can sell 1-month subs at $12+ for 80%+ margin. Even at the $3 volume rate, that\'s 75% profit per sub.' },
 ];
 
 const FAQ = [
   { q: 'How does the credit system work?', a: '1 credit = 1 month of service on a single connection. A 3-month line costs 3 credits, a 12-month line costs 12 credits, etc. Credits never expire, so buy in bulk and use them whenever you need.' },
-  { q: 'What\'s the minimum order?', a: 'The minimum is $100, which gets you 50 credits at the first-time rate of $2/credit. There is no maximum — buy as many as you need in one order.' },
+  { q: 'What\'s the minimum order?', a: 'First-time resellers get a special $2/credit rate with a $100 minimum (50 credits). After that, the regular tiers start at 20 credits for $110 ($5.50/credit) and the per-credit cost drops as you buy more — down to $3/credit on the 400-credit pack.' },
   { q: 'Can I brand the service as my own?', a: 'Yes. Pro tier and above includes a branded signup page with your logo and colors. Business and Enterprise tiers add a custom subdomain so customers never see "TeeeVEE" anywhere.' },
   { q: 'How do I create a line for a customer?', a: 'Log into your reseller panel, enter the customer\'s username, choose the duration, and click Create. Credentials are generated instantly and can be emailed directly to the customer.' },
-  { q: 'Do you offer a trial before I buy a big pack?', a: 'We recommend starting with the $100 / 50-credit minimum. You can create one 50-month line, fifty 1-month trial accounts, or any mix — whatever works to test the service with your customers.' },
+  { q: 'Do you offer a trial before I buy a big pack?', a: 'Yes — your first order qualifies for the $2/credit promo at 50 credits for $100. That gets you fifty 1-month subscriptions (or any mix) to test the service with your customers before committing to a larger pack at the regular rate.' },
   { q: 'What\'s the payment method?', a: 'Crypto (BTC, USDT, ETH), PayPal, and bank transfer. All large orders get an invoice and receipt for accounting.' },
 ];
 
@@ -95,7 +128,7 @@ function App() {
                 Run <em>your own</em> IPTV business.<br/>We handle the streams.
               </h1>
               <p className="lede" style={{marginTop: 20, fontSize: 18}}>
-                Credits at $2 each — first-time reseller rate. $100 minimum buy, no maximum. Build a brand, keep the margin, and let us handle infrastructure, 10,000 channels, and uptime.
+                First-time buyers get 50 credits for $100 ($2/credit promo). After that, packs from $5.50/credit dropping to $3 in volume. Build a brand, keep the margin, and let us handle infrastructure, 10,000+ channels, and uptime.
               </p>
               <div style={{display:'flex', gap: 12, marginTop: 32, flexWrap:'wrap'}}>
                 <a href={RESELLER_SIGNUP_URL} target="_blank" rel="noopener" className="btn btn-accent">Buy credits now <Arrow /></a>
@@ -103,8 +136,8 @@ function App() {
               </div>
               <div style={{display:'flex', gap: 32, marginTop: 40, flexWrap:'wrap'}}>
                 {[
-                  { k: '$2', v: 'Per credit (first-time)' },
-                  { k: '$100', v: 'Minimum buy' },
+                  { k: '$2', v: 'Per credit (first order)' },
+                  { k: '$3', v: 'Per credit at volume' },
                   { k: '80%+', v: 'Profit margins' },
                   { k: '100%', v: 'Uptime SLA' },
                 ].map(s => (
@@ -174,7 +207,7 @@ function App() {
           </div>
           <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(260px, 1fr))', gap: 20}}>
             {[
-              { t: 'High margins', d: 'Credits at $2 each, sell 12-month subs at $12+ each — that\'s 80%+ margin on every subscription.' },
+              { t: 'High margins', d: 'First-order $2/credit drops to $3 at volume. Sell 1-month subs at $12+ — 80%+ margin on day one, 75%+ at the volume rate.' },
               { t: 'No infrastructure', d: 'We handle servers, channels, EPG, updates, transcoding, and anti-freeze. You handle customers.' },
               { t: 'White-label ready', d: 'Your brand, your colors, your domain. Pro tier and above ships with branded signup pages.' },
               { t: 'Credits never expire', d: 'Buy in bulk when discounts drop. Use them at your own pace — there\'s no clock ticking.' },
@@ -232,12 +265,44 @@ function App() {
       {/* PRICING */}
       <section id="pricing" style={{padding: '96px 0'}}>
         <div className="container">
-          <div style={{maxWidth: 720, marginBottom: 56}}>
+          <div style={{maxWidth: 720, marginBottom: 32}}>
             <span className="eyebrow">Credit packages</span>
             <h2 className="display" style={{marginTop: 16}}>Buy more, <em>pay less.</em></h2>
             <p className="lede" style={{marginTop: 14}}>1 credit = 1 month on a single connection. Credits never expire.</p>
           </div>
-          <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(250px, 1fr))', gap: 16}}>
+
+          {/* First-time promo banner */}
+          <div style={{
+            background: 'linear-gradient(120deg, var(--ink) 0%, #1a1d22 100%)',
+            color: '#fff', borderRadius: 22, padding: '28px 32px',
+            marginBottom: 24, display: 'flex', alignItems: 'center',
+            justifyContent: 'space-between', gap: 24, flexWrap: 'wrap',
+            position: 'relative', overflow: 'hidden',
+          }}>
+            <div style={{position:'absolute', right:-80, top:-80, width: 280, height: 280, borderRadius:'50%',
+              background:'radial-gradient(circle, rgba(255,92,58,.35), transparent 70%)', pointerEvents:'none'}}/>
+            <div style={{position:'relative', zIndex:1, flex:'1 1 320px'}}>
+              <div style={{
+                display:'inline-block',
+                fontFamily:'JetBrains Mono, monospace', fontSize: 11,
+                background: 'var(--accent)', color: '#fff',
+                padding: '4px 10px', borderRadius: 999,
+                letterSpacing:'.08em', textTransform:'uppercase',
+                marginBottom: 12,
+              }}>First-time buyers</div>
+              <div style={{fontFamily:'Instrument Serif, serif', fontSize: 36, lineHeight: 1.05, marginBottom: 6}}>
+                {FIRST_TIME.credits} credits for ${FIRST_TIME.price} <span style={{color:'var(--accent)'}}>· ${FIRST_TIME.per.toFixed(2)}/credit</span>
+              </div>
+              <div style={{fontSize: 14, color:'rgba(255,255,255,.7)'}}>
+                One-time promo on your first order. After that you move to the regular tiers below — still volume-discounted down to $3/credit.
+              </div>
+            </div>
+            <a href={RESELLER_SIGNUP_URL} target="_blank" rel="noopener" className="btn btn-accent" style={{position:'relative', zIndex:1}}>
+              Claim ${FIRST_TIME.per.toFixed(2)}/credit promo <Arrow />
+            </a>
+          </div>
+
+          <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(220px, 1fr))', gap: 16}}>
             {TIERS.map(t => (
               <div key={t.name} style={{
                 background: t.popular ? 'var(--ink)' : '#fff',
