@@ -1,9 +1,9 @@
 {
-  "updated_utc": "2026-07-20T11:00:12Z",
-  "live_count": 10461,
-  "vod_count": 69806,
-  "total": 80267,
-  "live_categories": 80,
+  "updated_utc": "2026-07-21T11:00:12Z",
+  "live_count": 10415,
+  "vod_count": 69931,
+  "total": 80346,
+  "live_categories": 79,
   "vod_categories": 20,
   "source": "webrats m3u_plus"
 }
