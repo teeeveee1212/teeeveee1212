@@ -1,8 +1,8 @@
 {
-  "updated_utc": "2026-11-13T12:00:14Z",
-  "live_count": 3593,
-  "vod_count": 96326,
-  "total": 99919,
+  "updated_utc": "2026-11-14T12:00:13Z",
+  "live_count": 3582,
+  "vod_count": 96417,
+  "total": 99999,
   "live_categories": 27,
   "vod_categories": 60,
   "source": "webrats m3u_plus"
